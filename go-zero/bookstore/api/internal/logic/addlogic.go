@@ -2,12 +2,12 @@ package logic
 
 import (
 	"context"
-	"gozerolabs/bookstore/rpc/add/adder"
-
-	"gozerolabs/bookstore/api/internal/svc"
-	"gozerolabs/bookstore/api/internal/types"
 
 	"github.com/zeromicro/go-zero/core/logx"
+
+	"golabs/go-zero/bookstore/api/internal/svc"
+	"golabs/go-zero/bookstore/api/internal/types"
+	"golabs/go-zero/bookstore/rpc/add/adder"
 )
 
 type AddLogic struct {

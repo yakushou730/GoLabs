@@ -1,8 +1,8 @@
 package svc
 
 import (
-	"gozerolabs/mall/order/api/internal/config"
-	"gozerolabs/mall/user/rpc/userclient"
+	"golabs/go-zero/mall/order/api/internal/config"
+	"golabs/go-zero/mall/user/rpc/userclient"
 
 	"github.com/zeromicro/go-zero/zrpc"
 )

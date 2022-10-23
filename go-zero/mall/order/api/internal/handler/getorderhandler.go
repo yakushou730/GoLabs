@@ -4,9 +4,9 @@ import (
 	"net/http"
 
 	"github.com/zeromicro/go-zero/rest/httpx"
-	"gozerolabs/mall/order/api/internal/logic"
-	"gozerolabs/mall/order/api/internal/svc"
-	"gozerolabs/mall/order/api/internal/types"
+	"golabs/go-zero/mall/order/api/internal/logic"
+	"golabs/go-zero/mall/order/api/internal/svc"
+	"golabs/go-zero/mall/order/api/internal/types"
 )
 
 func getOrderHandler(svcCtx *svc.ServiceContext) http.HandlerFunc {

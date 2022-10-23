@@ -2,12 +2,12 @@ package logic
 
 import (
 	"context"
-	"gozerolabs/shorturl/rpc/model"
+	"golabs/go-zero/shorturl/rpc/model"
 
 	"github.com/zeromicro/go-zero/core/hash"
 
-	"gozerolabs/shorturl/rpc/internal/svc"
-	"gozerolabs/shorturl/rpc/transform"
+	"golabs/go-zero/shorturl/rpc/internal/svc"
+	"golabs/go-zero/shorturl/rpc/transform"
 
 	"github.com/zeromicro/go-zero/core/logx"
 )

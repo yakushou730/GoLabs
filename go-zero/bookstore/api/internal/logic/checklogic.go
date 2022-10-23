@@ -2,10 +2,10 @@ package logic
 
 import (
 	"context"
-	"gozerolabs/bookstore/rpc/check/checker"
+	"golabs/go-zero/bookstore/rpc/check/checker"
 
-	"gozerolabs/bookstore/api/internal/svc"
-	"gozerolabs/bookstore/api/internal/types"
+	"golabs/go-zero/bookstore/api/internal/svc"
+	"golabs/go-zero/bookstore/api/internal/types"
 
 	"github.com/zeromicro/go-zero/core/logx"
 )

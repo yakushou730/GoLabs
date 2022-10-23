@@ -6,9 +6,9 @@ package server
 import (
 	"context"
 
-	"gozerolabs/shorturl/rpc/internal/logic"
-	"gozerolabs/shorturl/rpc/internal/svc"
-	"gozerolabs/shorturl/rpc/transform"
+	"golabs/go-zero/shorturl/rpc/internal/logic"
+	"golabs/go-zero/shorturl/rpc/internal/svc"
+	"golabs/go-zero/shorturl/rpc/transform"
 )
 
 type TransformerServer struct {

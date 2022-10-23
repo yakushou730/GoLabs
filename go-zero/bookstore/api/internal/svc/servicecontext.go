@@ -1,9 +1,9 @@
 package svc
 
 import (
-	"gozerolabs/bookstore/api/internal/config"
-	"gozerolabs/bookstore/rpc/add/adder"
-	"gozerolabs/bookstore/rpc/check/checker"
+	"golabs/go-zero/bookstore/api/internal/config"
+	"golabs/go-zero/bookstore/rpc/add/adder"
+	"golabs/go-zero/bookstore/rpc/check/checker"
 
 	"github.com/zeromicro/go-zero/zrpc"
 )

@@ -6,7 +6,7 @@ package checker
 import (
 	"context"
 
-	"gozerolabs/bookstore/rpc/check/check"
+	"golabs/go-zero/bookstore/rpc/check/check"
 
 	"github.com/zeromicro/go-zero/zrpc"
 	"google.golang.org/grpc"

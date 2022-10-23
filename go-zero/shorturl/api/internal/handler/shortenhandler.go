@@ -4,9 +4,9 @@ import (
 	"net/http"
 
 	"github.com/zeromicro/go-zero/rest/httpx"
-	"gozerolabs/shorturl/api/internal/logic"
-	"gozerolabs/shorturl/api/internal/svc"
-	"gozerolabs/shorturl/api/internal/types"
+	"golabs/go-zero/shorturl/api/internal/logic"
+	"golabs/go-zero/shorturl/api/internal/svc"
+	"golabs/go-zero/shorturl/api/internal/types"
 )
 
 func ShortenHandler(svcCtx *svc.ServiceContext) http.HandlerFunc {

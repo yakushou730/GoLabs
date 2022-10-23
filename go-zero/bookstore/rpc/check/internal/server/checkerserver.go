@@ -6,9 +6,9 @@ package server
 import (
 	"context"
 
-	"gozerolabs/bookstore/rpc/check/check"
-	"gozerolabs/bookstore/rpc/check/internal/logic"
-	"gozerolabs/bookstore/rpc/check/internal/svc"
+	"golabs/go-zero/bookstore/rpc/check/check"
+	"golabs/go-zero/bookstore/rpc/check/internal/logic"
+	"golabs/go-zero/bookstore/rpc/check/internal/svc"
 )
 
 type CheckerServer struct {

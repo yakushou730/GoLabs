@@ -1,8 +1,8 @@
 package svc
 
 import (
-	"gozerolabs/shorturl/rpc/internal/config"
-	"gozerolabs/shorturl/rpc/model"
+	"golabs/go-zero/shorturl/rpc/internal/config"
+	"golabs/go-zero/shorturl/rpc/model"
 
 	"github.com/zeromicro/go-zero/core/stores/sqlx"
 )

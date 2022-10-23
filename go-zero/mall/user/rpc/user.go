@@ -4,10 +4,10 @@ import (
 	"flag"
 	"fmt"
 
-	"gozerolabs/mall/user/rpc/internal/config"
-	"gozerolabs/mall/user/rpc/internal/server"
-	"gozerolabs/mall/user/rpc/internal/svc"
-	"gozerolabs/mall/user/rpc/types/user"
+	"golabs/go-zero/mall/user/rpc/internal/config"
+	"golabs/go-zero/mall/user/rpc/internal/server"
+	"golabs/go-zero/mall/user/rpc/internal/svc"
+	"golabs/go-zero/mall/user/rpc/types/user"
 
 	"github.com/zeromicro/go-zero/core/conf"
 	"github.com/zeromicro/go-zero/core/service"

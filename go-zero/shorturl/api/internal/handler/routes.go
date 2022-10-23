@@ -4,7 +4,7 @@ package handler
 import (
 	"net/http"
 
-	"gozerolabs/shorturl/api/internal/svc"
+	"golabs/go-zero/shorturl/api/internal/svc"
 
 	"github.com/zeromicro/go-zero/rest"
 )

@@ -6,9 +6,9 @@ package server
 import (
 	"context"
 
-	"gozerolabs/mall/user/rpc/internal/logic"
-	"gozerolabs/mall/user/rpc/internal/svc"
-	"gozerolabs/mall/user/rpc/types/user"
+	"golabs/go-zero/mall/user/rpc/internal/logic"
+	"golabs/go-zero/mall/user/rpc/internal/svc"
+	"golabs/go-zero/mall/user/rpc/types/user"
 )
 
 type UserServer struct {

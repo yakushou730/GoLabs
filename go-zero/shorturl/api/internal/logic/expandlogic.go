@@ -2,10 +2,10 @@ package logic
 
 import (
 	"context"
-	"gozerolabs/shorturl/rpc/transformer"
+	"golabs/go-zero/shorturl/rpc/transformer"
 
-	"gozerolabs/shorturl/api/internal/svc"
-	"gozerolabs/shorturl/api/internal/types"
+	"golabs/go-zero/shorturl/api/internal/svc"
+	"golabs/go-zero/shorturl/api/internal/types"
 
 	"github.com/zeromicro/go-zero/core/logx"
 )

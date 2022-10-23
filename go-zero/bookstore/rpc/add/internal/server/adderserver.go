@@ -6,9 +6,9 @@ package server
 import (
 	"context"
 
-	"gozerolabs/bookstore/rpc/add/add"
-	"gozerolabs/bookstore/rpc/add/internal/logic"
-	"gozerolabs/bookstore/rpc/add/internal/svc"
+	"golabs/go-zero/bookstore/rpc/add/add"
+	"golabs/go-zero/bookstore/rpc/add/internal/logic"
+	"golabs/go-zero/bookstore/rpc/add/internal/svc"
 )
 
 type AdderServer struct {

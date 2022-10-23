@@ -4,10 +4,10 @@ import (
 	"flag"
 	"fmt"
 
-	"gozerolabs/bookstore/rpc/check/check"
-	"gozerolabs/bookstore/rpc/check/internal/config"
-	"gozerolabs/bookstore/rpc/check/internal/server"
-	"gozerolabs/bookstore/rpc/check/internal/svc"
+	"golabs/go-zero/bookstore/rpc/check/check"
+	"golabs/go-zero/bookstore/rpc/check/internal/config"
+	"golabs/go-zero/bookstore/rpc/check/internal/server"
+	"golabs/go-zero/bookstore/rpc/check/internal/svc"
 
 	"github.com/zeromicro/go-zero/core/conf"
 	"github.com/zeromicro/go-zero/core/service"

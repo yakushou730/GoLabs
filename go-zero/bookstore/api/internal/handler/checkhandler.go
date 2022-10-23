@@ -4,9 +4,10 @@ import (
 	"net/http"
 
 	"github.com/zeromicro/go-zero/rest/httpx"
-	"gozerolabs/bookstore/api/internal/logic"
-	"gozerolabs/bookstore/api/internal/svc"
-	"gozerolabs/bookstore/api/internal/types"
+
+	"golabs/go-zero/bookstore/api/internal/logic"
+	"golabs/go-zero/bookstore/api/internal/svc"
+	"golabs/go-zero/bookstore/api/internal/types"
 )
 
 func CheckHandler(svcCtx *svc.ServiceContext) http.HandlerFunc {

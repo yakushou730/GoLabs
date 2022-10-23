@@ -6,7 +6,7 @@ package transformer
 import (
 	"context"
 
-	"gozerolabs/shorturl/rpc/transform"
+	"golabs/go-zero/shorturl/rpc/transform"
 
 	"github.com/zeromicro/go-zero/zrpc"
 	"google.golang.org/grpc"

@@ -1,8 +1,8 @@
 package svc
 
 import (
-	"gozerolabs/shorturl/api/internal/config"
-	"gozerolabs/shorturl/rpc/transformer"
+	"golabs/go-zero/shorturl/api/internal/config"
+	"golabs/go-zero/shorturl/rpc/transformer"
 
 	"github.com/zeromicro/go-zero/zrpc"
 )
