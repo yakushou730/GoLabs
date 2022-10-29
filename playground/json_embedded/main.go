@@ -33,4 +33,8 @@ func main() {
 	}
 	data, _ := json.MarshalIndent(l, "", "  ")
 	fmt.Printf("%v\n", string(data))
+
+	var ll Layer1
+	_ = json.Unmarshal(data, &ll)
+	fmt.Printf("%+v\n", ll)
 }
