@@ -4,11 +4,7 @@ package main
 func canConstruct(ransomNote string, magazine string) bool {
 	magazineHash := make(map[rune]int)
 	for _, v := range magazine {
-		if _, ok := magazineHash[v]; ok {
-			magazineHash[v]++
-		} else {
-			magazineHash[v] = 1
-		}
+		magazineHash[v] += 1
 	}
 
 	for _, v := range ransomNote {
