@@ -12,22 +12,36 @@ func deleteDuplicates(head *ListNode) *ListNode {
 	curr := head
 
 	for curr != nil && curr.Next != nil {
-		next := curr.Next
-
-		for next.Val == curr.Val {
-			curr.Next = next.Next
-			next = next.Next
-
-			if next == nil {
-				break
-			}
+		if curr.Next.Val == curr.Val {
+			curr.Next = curr.Next.Next
+		} else {
+			curr = curr.Next
 		}
-
-		curr = curr.Next
 	}
 
 	return head
 }
+
+//func deleteDuplicates(head *ListNode) *ListNode {
+//	curr := head
+//
+//	for curr != nil && curr.Next != nil {
+//		next := curr.Next
+//
+//		for next.Val == curr.Val {
+//			curr.Next = next.Next
+//			next = next.Next
+//
+//			if next == nil {
+//				break
+//			}
+//		}
+//
+//		curr = curr.Next
+//	}
+//
+//	return head
+//}
 
 func main() {
 	list := &ListNode{
