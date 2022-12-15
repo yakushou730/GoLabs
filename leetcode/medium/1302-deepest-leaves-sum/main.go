@@ -11,6 +11,54 @@ type TreeNode struct {
 	Right *TreeNode
 }
 
+//type pair struct {
+//	node  *TreeNode
+//	depth int
+//}
+
+// DFS
+//func deepestLeavesSum(root *TreeNode) int {
+//	if root == nil {
+//		return 0
+//	}
+//
+//	var ans, depth, currDepth int
+//
+//	stack := []*pair{{node: root, depth: 0}}
+//
+//	for len(stack) > 0 {
+//		p := stack[len(stack)-1]
+//		stack = stack[:len(stack)-1]
+//
+//		currDepth = p.depth
+//
+//		if p.node.Left == nil && p.node.Right == nil {
+//			if currDepth > depth {
+//				ans = p.node.Val
+//				depth = currDepth
+//			} else if currDepth == depth {
+//				ans += p.node.Val
+//			}
+//		} else {
+//			if p.node.Right != nil {
+//				stack = append(stack, &pair{
+//					node:  p.node.Right,
+//					depth: currDepth + 1,
+//				})
+//			}
+//			if p.node.Left != nil {
+//				stack = append(stack, &pair{
+//					node:  p.node.Left,
+//					depth: currDepth + 1,
+//				})
+//			}
+//		}
+//	}
+//
+//	return ans
+//}
+
+// BFS
 func deepestLeavesSum(root *TreeNode) int {
 	if root == nil {
 		return 0
