@@ -11,23 +11,36 @@ type ListNode struct {
 }
 
 func reverseList(head *ListNode) *ListNode {
-	if head == nil {
-		return nil
+	var prev *ListNode
+	curr := head
+
+	for curr != nil {
+		nextTemp := curr.Next
+		curr.Next = prev
+		prev = curr
+		curr = nextTemp
 	}
-
-	var ans, prev *ListNode
-	for head != nil {
-		ans = &ListNode{
-			Val:  head.Val,
-			Next: prev,
-		}
-
-		prev = ans
-		head = head.Next
-	}
-
-	return ans
+	return prev
 }
+
+//func reverseList(head *ListNode) *ListNode {
+//	if head == nil {
+//		return nil
+//	}
+//
+//	var ans, prev *ListNode
+//	for head != nil {
+//		ans = &ListNode{
+//			Val:  head.Val,
+//			Next: prev,
+//		}
+//
+//		prev = ans
+//		head = head.Next
+//	}
+//
+//	return ans
+//}
 
 func main() {
 	head1 := &ListNode{
