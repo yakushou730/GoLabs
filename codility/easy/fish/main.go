@@ -2,6 +2,7 @@ package main
 
 import "fmt"
 
+// https://app.codility.com/programmers/lessons/7-stacks_and_queues/fish/
 func Solution(A []int, B []int) int {
 	if len(A) == 0 {
 		return 0
