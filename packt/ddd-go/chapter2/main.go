@@ -3,8 +3,10 @@ package chapter2
 import (
 	"context"
 	"encoding/json"
+	"errors"
 	"github.com/gorilla/mux"
 	"net/http"
+	"time"
 )
 
 // background story
@@ -128,4 +130,41 @@ func router(u UserHandler) {
 
 		_, _ = w.Write(b)
 	}).Methods(http.MethodGet)
+}
+
+// anti-corruption layer for adapt data from marketing team,
+// transfer MarketingCampaignModel to Campaign
+// Campaign -> our domain
+// MarketingCampaignModel -> domain from marketing
+type Campaign struct {
+	ID      string
+	Title   string
+	Goal    string
+	EndDate time.Time
+}
+
+type MarketingCampaignModel struct {
+	Id       string `json:"id"`
+	Metadata struct {
+		Name     string `json:"name"`
+		Category string `json:"category"`
+		EndDate  string `json:"end_date"`
+	} `json:"metadata"`
+}
+
+func (m *MarketingCampaignModel) ToCampaign() (*Campaign, error) {
+	if m.Id == "" {
+		return nil, errors.New("campaign ID cannot be empty")
+	}
+	formattedDate, err := time.Parse("2006-01-02", m.Metadata.EndDate)
+	if err != nil {
+		return nil, errors.New("endDate was not in a parsable")
+	}
+
+	return &Campaign{
+		ID:      m.Id,
+		Title:   m.Metadata.Name,
+		Goal:    m.Metadata.Category,
+		EndDate: formattedDate,
+	}, nil
 }
