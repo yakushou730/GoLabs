@@ -6,11 +6,13 @@ import (
 	"coffeeco/internal/store"
 	"context"
 	"errors"
+	"time"
+
 	"github.com/Rhymond/go-money"
 	"github.com/google/uuid"
-	"time"
 )
 
+// aggregate
 type Purchase struct {
 	id                 uuid.UUID
 	Store              store.Store
