@@ -2,10 +2,12 @@ package purchase
 
 import (
 	coffeeco "coffeeco/internal"
+	"coffeeco/internal/loyalty"
 	"coffeeco/internal/payment"
 	"coffeeco/internal/store"
 	"context"
 	"errors"
+	"fmt"
 	"time"
 
 	"github.com/Rhymond/go-money"
@@ -54,7 +56,7 @@ type Service struct {
 	purchaseRepo Repository
 }
 
-func (s Service) CompletePurchase(ctx context.Context, purchase *Purchase) error {
+func (s Service) CompletePurchase(ctx context.Context, purchase *Purchase, coffeeBuxCard *loyalty.CoffeeBux) error {
 	if err := purchase.validateAndEnrich(); err != nil {
 		return err
 	}
@@ -65,13 +67,21 @@ func (s Service) CompletePurchase(ctx context.Context, purchase *Purchase) error
 			return errors.New("card charge failed, cancelling purchase")
 		}
 	case payment.MEANS_CASH:
-		// TODO: For the reader to add :)
+	// TODO: For the reader to add :)
+	case payment.MEANS_COFFEEBUX:
+		if err := coffeeBuxCard.Pay(ctx, purchase.ProductsToPurchase); err != nil {
+			return fmt.Errorf("failed to charge loyalty card: %w", err)
+		}
 	default:
 		return errors.New("unknown payment type")
 	}
 
 	if err := s.purchaseRepo.Store(ctx, *purchase); err != nil {
 		return errors.New("failed to store purchase")
+	}
+
+	if coffeeBuxCard != nil {
+		coffeeBuxCard.AddStamp()
 	}
 
 	return nil
