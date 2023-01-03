@@ -1,9 +1,6 @@
 package purchase
 
 import (
-	coffeeco "coffeeco/internal"
-	"coffeeco/internal/payment"
-	"coffeeco/internal/store"
 	"context"
 	"fmt"
 	"time"
@@ -12,10 +9,15 @@ import (
 	"github.com/google/uuid"
 	"go.mongodb.org/mongo-driver/mongo"
 	"go.mongodb.org/mongo-driver/mongo/options"
+
+	coffeeco "coffeeco/internal"
+	"coffeeco/internal/payment"
+	"coffeeco/internal/store"
 )
 
 type Repository interface {
 	Store(ctx context.Context, purchase Purchase) error
+	Ping(ctx context.Context) error
 }
 
 type MongoRepository struct {
@@ -45,24 +47,44 @@ func (mr *MongoRepository) Store(ctx context.Context, purchase Purchase) error {
 	return nil
 }
 
+func (mr *MongoRepository) Ping(ctx context.Context) error {
+	if _, err := mr.purchases.EstimatedDocumentCount(ctx); err != nil {
+		return fmt.Errorf("failed to ping DB: %w", err)
+	}
+
+	return nil
+}
+
 type mongoPurchase struct {
-	id                 uuid.UUID
-	store              store.Store
-	productsToPurchase []coffeeco.Product
-	total              money.Money
-	paymentMeans       payment.Means
-	timeOfPurchase     time.Time
-	cardToken          *string
+	ID                 uuid.UUID          `bson:"ID"`
+	Store              store.Store        `bson:"Store"`
+	ProductsToPurchase []coffeeco.Product `bson:"products_to_purchased"`
+	Total              int64              `bson:"purchase_total"`
+	PaymentMeans       payment.Means      `bson:"payment_means"`
+	TimeOfPurchase     time.Time          `bson:"created_at"`
+	CardToken          *string            `bson:"card_token"`
+}
+
+func (m mongoPurchase) ToPurchase() Purchase {
+	return Purchase{
+		id:                 m.ID,
+		Store:              m.Store,
+		ProductsToPurchase: m.ProductsToPurchase,
+		total:              *money.New(m.Total, "USD"),
+		PaymentMeans:       m.PaymentMeans,
+		timeOfPurchase:     m.TimeOfPurchase,
+		CardToken:          m.CardToken,
+	}
 }
 
 func toMongoPurchase(p Purchase) mongoPurchase {
 	return mongoPurchase{
-		id:                 p.id,
-		store:              p.Store,
-		productsToPurchase: p.ProductsToPurchase,
-		total:              p.total,
-		paymentMeans:       p.PaymentMeans,
-		timeOfPurchase:     p.timeOfPurchase,
-		cardToken:          p.CardToken,
+		ID:                 p.id,
+		Store:              p.Store,
+		ProductsToPurchase: p.ProductsToPurchase,
+		Total:              p.total.Amount(),
+		PaymentMeans:       p.PaymentMeans,
+		TimeOfPurchase:     p.timeOfPurchase,
+		CardToken:          p.CardToken,
 	}
 }

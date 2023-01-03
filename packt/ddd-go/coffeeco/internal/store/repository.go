@@ -5,19 +5,17 @@ import (
 	"errors"
 	"fmt"
 
-	"go.mongodb.org/mongo-driver/bson"
-
-	"go.mongodb.org/mongo-driver/mongo/options"
-
-	"go.mongodb.org/mongo-driver/mongo"
-
 	"github.com/google/uuid"
+	"go.mongodb.org/mongo-driver/bson"
+	"go.mongodb.org/mongo-driver/mongo"
+	"go.mongodb.org/mongo-driver/mongo/options"
 )
 
 var ErrNoDiscount = errors.New("no discount for store")
 
 type Repository interface {
 	GetStoreDiscount(ctx context.Context, storeID uuid.UUID) (int64, error)
+	Ping(ctx context.Context) error
 }
 
 type MongoRepository struct {
@@ -35,6 +33,14 @@ func NewMongoRepo(ctx context.Context, connectionString string) (*MongoRepositor
 	return &MongoRepository{
 		storeDiscounts: discounts,
 	}, nil
+}
+
+func (m MongoRepository) Ping(ctx context.Context) error {
+	if _, err := m.storeDiscounts.EstimatedDocumentCount(ctx); err != nil {
+		return fmt.Errorf("failed to ping DB: %w", err)
+	}
+
+	return nil
 }
 
 func (m MongoRepository) GetStoreDiscount(ctx context.Context, storeID uuid.UUID) (int64, error) {

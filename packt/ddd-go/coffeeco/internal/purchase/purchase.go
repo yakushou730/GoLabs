@@ -1,10 +1,6 @@
 package purchase
 
 import (
-	coffeeco "coffeeco/internal"
-	"coffeeco/internal/loyalty"
-	"coffeeco/internal/payment"
-	"coffeeco/internal/store"
 	"context"
 	"errors"
 	"fmt"
@@ -12,6 +8,11 @@ import (
 
 	"github.com/Rhymond/go-money"
 	"github.com/google/uuid"
+
+	coffeeco "coffeeco/internal"
+	"coffeeco/internal/loyalty"
+	"coffeeco/internal/payment"
+	"coffeeco/internal/store"
 )
 
 // aggregate
@@ -61,7 +62,15 @@ type Service struct {
 	storeService StoreService
 }
 
-func (s Service) CompletePurchase(ctx context.Context, storeID uuid.UUID, purchase *Purchase, coffeeBuxCard *loyalty.CoffeeBux) error {
+func NewService(cardService CardChargeService, purchaseRepo Repository, storeService StoreService) *Service {
+	return &Service{
+		cardService:  cardService,
+		purchaseRepo: purchaseRepo,
+		storeService: storeService,
+	}
+}
+
+func (s *Service) CompletePurchase(ctx context.Context, storeID uuid.UUID, purchase *Purchase, coffeeBuxCard *loyalty.CoffeeBux) error {
 	if err := purchase.validateAndEnrich(); err != nil {
 		return err
 	}
@@ -77,6 +86,7 @@ func (s Service) CompletePurchase(ctx context.Context, storeID uuid.UUID, purcha
 		}
 	case payment.MEANS_CASH:
 	// TODO: For the reader to add :)
+
 	case payment.MEANS_COFFEEBUX:
 		if err := coffeeBuxCard.Pay(ctx, purchase.ProductsToPurchase); err != nil {
 			return fmt.Errorf("failed to charge loyalty card: %w", err)

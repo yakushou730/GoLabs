@@ -1,13 +1,14 @@
 package loyalty
 
 import (
-	coffeeco "coffeeco/internal"
-	"coffeeco/internal/store"
 	"context"
 	"errors"
 	"fmt"
 
 	"github.com/google/uuid"
+
+	coffeeco "coffeeco/internal"
+	"coffeeco/internal/store"
 )
 
 type CoffeeBux struct {
